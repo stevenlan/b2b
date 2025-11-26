@@ -1,0 +1,138 @@
+.ant-btn {
+  &.s-btn {
+    width: 100%;
+    height: 44px;
+    color: #FFFFFF;
+    font-size: 14px;
+    background: #262626;
+    border-radius: 2px;
+    &:hover {
+      border: none;
+      color: #FFFFFF;
+    }
+    &:disabled {
+      color: rgba(0, 0, 0, 0.25);
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+  &.c-gray {
+    color: #262626;
+    background: #F5F5F5;
+    border: none;
+    &:hover {
+      color: #262626;
+    }
+  }
+  &.line-btn {
+    color: #262626;
+    background: none;
+    border-radius: 2px;
+    &:hover {
+      color: #262626;
+      border-color: #262626;
+    }
+  }
+  &.add-btn {
+    border-color:#262626;
+    color: #262626;
+    background: none;
+    border-radius: 2px;
+    &:hover {
+      color: #262626;
+      border: 1px #262626 solid;
+    }
+  }
+  &.ant-btn-text:not(:disabled):hover {
+    background: none;
+  }
+}
+
+.ant-checkbox {
+  height: 18px;
+  width: 18px;
+  .ant-checkbox-inner {
+    border-color: #262626 !important;
+    border-radius: 0;
+  }
+  &.ant-checkbox-checked {
+    &::after {
+      border-color: #262626 !important;
+      border-width: 0;
+    }
+    .ant-checkbox-inner {
+      background-color: #262626 !important;
+    }
+  }
+}
+
+.ant-popconfirm {
+  .ant-btn-default {
+    background: none;
+  }
+  .ant-btn-primary {
+    background: #262626;
+  }
+  .ant-btn {
+    border-radius: 2px;
+  }
+  .ant-btn-default:hover {
+    color: #262626;
+    border-color: #262626;
+    background-color: #ffffff;
+  }
+  .ant-btn-primary:hover {
+    color: #ffffff;
+    border-color: #262626;
+    background-color: #262626;
+  }
+}
+.empty {
+  .ant-empty-description {
+    font-weight: 400;
+    font-size: 14px;
+    color: #8C8C8C;
+  }
+}
+.ant-spin {
+  .ant-spin-dot-item {
+    background-color: #888888;
+  }
+}
+
+.ant-pagination {
+  .ant-pagination-item-active {
+    border-color: #262626;
+    a {
+      color: #262626;
+    }
+  }
+  .ant-pagination-item-active:hover {
+    border-color: #262626;
+    a {
+      color: #262626;
+    }
+  }
+  .ant-pagination-options-size-changer:hover {
+    .ant-select-selector {
+      border-color: #262626 !important;
+    }
+  }
+}
+
+.ant-popover  {
+  z-index: 9999;
+  .ant-popover-inner{
+    padding: 0;
+  }
+}
+.ant-popover-inner-content {
+  .ant-popconfirm-inner-content {
+    padding: 10px;
+  }
+}
+.ant-select:hover .ant-select-selector {
+  border-color: #262626 !important;
+}
+.ant-rate {
+  color: initial;
+}

@@ -1,0 +1,51 @@
+import {
+  Button,
+  message,
+  Badge,
+  Tabs,
+  Input,
+  Form,
+  Flex,
+  Modal,
+  Select,
+  Checkbox,
+  Radio,
+  Upload,
+  Space,
+  Spin,
+  Popconfirm,
+  DatePicker,
+  Empty,
+  Pagination,
+  Popover,
+  Affix,
+  Table,
+  Rate,
+  Image
+} from 'ant-design-vue';
+
+export default function  signAntd(app) {
+  app.use(Button)
+  app.use(Badge)
+  app.use(Tabs)
+  app.use(Input)
+  app.use(Form)
+  app.use(Flex)
+  app.use(Modal)
+  app.use(Select)
+  app.use(DatePicker)
+  app.use(Checkbox)
+  app.use(Radio)
+  app.use(Upload)
+  app.use(Space)
+  app.use(Spin)
+  app.use(Popconfirm)
+  app.use(Empty)
+  app.use(Pagination)
+  app.use(Popover)
+  app.use(Affix)
+  app.use(Table)
+  app.use(Rate)
+  app.use(Image)
+  app.config.globalProperties.$message = message;
+}

@@ -1,0 +1,51 @@
+@import '../iconfont/iconfont.css';
+@import './antd.scss';
+
+body {
+  height: 100%;
+  margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  color: #262626;
+}
+
+.w-width {
+  width: 1200px;
+}
+
+@media (min-width: 1360px) {
+  .w-width {
+    width: 80%;
+  }
+}
+
+.cursor-p {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+ul, li, p{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 图片占位图
+.pic-img{
+  width: 100%;
+  height: 100%;
+}
+.default-img {
+  background: url(../images/default_good.png) no-repeat center;
+  background-size: 100% 100%;
+}
