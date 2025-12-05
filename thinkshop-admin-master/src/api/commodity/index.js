@@ -79,6 +79,43 @@ export function categoryInfo(id) {
     method: 'get'
   })
 }
+
+/* 商品品牌 */
+export function queryBrand(params) {
+  return request({
+    url: `${pri}/category/brandList`,
+    method: 'get',
+    params
+  })
+}
+export function addBrand(data) {
+  return request({
+    url: `${pri}/category/brandAdd`,
+    method: 'post',
+    data
+  })
+}
+export function updateBrand(data) {
+  return request({
+    url: `${pri}/category/brandUpdate`,
+    method: 'put',
+    data
+  })
+}
+export function delBrand(params) {
+  return request({
+    url: `${pri}/category/brandDel`,
+    method: 'delete',
+    params
+  })
+}
+export function brandInfo(id) {
+  return request({
+    url: `${pri}/category/brand/${id}`,
+    method: 'get'
+  })
+}
+/* 产品 */
 export function bindProduct(data) {
   return request({
     url: `${pri}/category/relation`,

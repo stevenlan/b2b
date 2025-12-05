@@ -65,6 +65,19 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
+              <el-form-item label="商品品牌" prop="brandId">
+                <el-tree-select
+                  v-model="formData.brandId"
+                  :data="brandList"
+                  check-strictly
+                  :props="brandProps"
+                  :render-after-expand="false"
+                  placeholder="请选择商品类目"
+                  style="width: 100%"
+                />
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
               <el-form-item label="商品分组">
                 <el-select
                   v-model="formData.groupIds"
@@ -279,7 +292,7 @@
 </template>
 
 <script setup>
-import {queryCategory, queryGroup, addProduct, updateProduct, productInfo, formatAttr} from '@/api/commodity'
+import {queryCategory, queryBrand, queryGroup, addProduct, updateProduct, productInfo, formatAttr} from '@/api/commodity'
 import { WangEditor } from "@/components/Wangeditor/index.js";
 import { getToken } from "@/utils/auth";
 import UploadImg from './uploadFile.vue'
@@ -297,6 +310,7 @@ const defaultForm = {
   isShow: 1,
   tax: 1,
   categoryId: '',
+  brandId: '',
   groupIds: [],
   image: [],
   video: [],
@@ -318,14 +332,23 @@ const rules = ref({
   ],
   categoryId:  [
     {required: true, message: '请选择商品类目'}
+  ],
+  brandId:  [
+    {required: true, message: '请选择商品品牌'}
   ]
 })
 const categoryList = ref([])
+const brandList = ref([])
 const groupList = ref([])
 const treeProps = ref({
   children: 'child',
   label: 'name',
   value: 'categoryId'
+})
+const brandProps = ref({
+  children: 'child',
+  label: 'name',
+  value: 'id'
 })
 const dialogImageUrl = ref('')
 const dialogVisible = ref(false)
@@ -507,8 +530,10 @@ async function init() {
   const {id=''} = route.query
   try {
     const {rows=[]} = await queryCategory()
+    const {brandRows=[]} = await queryBrand()
     const {rows:groupRows=[]} = await queryGroup({pageNum: 1, pageSize: 999})
     categoryList.value = rows
+    brandList.value = brandRows
     groupList.value = groupRows
     initInfo(id)
   } catch(err) {
@@ -535,6 +560,7 @@ function closeDialog() {
   manyFormValidate.value = []
   groupList.value = []
   categoryList.value = []
+  brandList.value = []
   Object.assign(formData, defaultForm)
   formRef.value.resetFields()
 }
