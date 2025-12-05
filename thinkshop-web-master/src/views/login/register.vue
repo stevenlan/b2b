@@ -74,7 +74,7 @@
                 <template #label>
                   <span class="label-required">{{$t('login.password')}}<span class="required">*</span></span>
                 </template>
-                <c-input v-model:value="form.password" placeholder="Password" />
+                <c-input type="password" v-model:value="form.password" placeholder="Password" />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :md="12">
@@ -82,18 +82,23 @@
                 <template #label>
                   <span class="label-required">{{$t('login.confirmPassword')}}<span class="required">*</span></span>
                 </template>
-                <c-input v-model:value="form.confirmPassword" placeholder="Password Confirm" />
+                <c-input type="password" v-model:value="form.confirmPassword" placeholder="Password Confirm" />
               </a-form-item>
             </a-col>
           </a-row>
         </section>
 
         <section class="form-section">
-          <h2 class="section-title">{{$t('login.addressDetails') || 'Address'}}</h2>
+          <h2 class="section-title">{{$t('login.addressDetails')}}</h2>
           <a-row :gutter="24">
             <a-col :xs="24" :md="12">
               <a-form-item :label="$t('login.company')">
                 <c-input v-model:value="form.company" placeholder="Company" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :md="12" style="visibility: hidden">
+              <a-form-item :label="$t('login.company')">
+                <c-input />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :md="12">
@@ -169,6 +174,10 @@
                 />
               </a-form-item>
             </a-col>
+            <a-col :xs="24" :md="12" style="visibility: hidden">
+              <a-form-item>
+              </a-form-item>
+            </a-col>
             <a-col :xs="24" :md="12">
               <a-form-item v-bind="validateInfos.businessDuration">
                 <template #label>
@@ -229,20 +238,22 @@
           </a-row>
         </section>
 
-          <a-row :span="12" align="center">
-            <a-form-item v-bind="validateInfos.verifyCode">
-              <template #label>
-                <span class="label-required">{{$t('login.enterCodeBelow')}}<span class="required">*</span></span>
-              </template>
-              <c-input v-model:value="form.verifyCode" placeholder="Verification Code" :funIcon="true">
-                <a-button type="text" class="code-btn" @click="sendCode" :loading="getCoding" :disabled="isCode">
-                  {{ isCode ? `${time}s` : $t('login.getCode') }}
-                </a-button>
-              </c-input>
-            </a-form-item>
+          <a-row align="center">
+            <a-col :xs="24" :md="11">
+              <a-form-item v-bind="validateInfos.verifyCode">
+                <template #label>
+                  <span class="label-required">{{$t('login.enterCodeBelow')}}<span class="required">*</span></span>
+                </template>
+                <c-input v-model:value="form.verifyCode" placeholder="Verification Code" :funIcon="true">
+                  <a-button type="text" class="code-btn" @click="sendCode" :loading="getCoding" :disabled="isCode">
+                    {{ isCode ? `${time}s` : $t('login.getCode') }}
+                  </a-button>
+                </c-input>
+              </a-form-item>
+            </a-col>
           </a-row>
           <a-row align="center">
-            <a-button type="primary" class="submit-btn" block @click="submitForm" :loading="loading" align="center">
+            <a-button type="text" class="submit-btn" block @click="submitForm" :loading="loading" align="center">
               {{$t('login.createAccount')}}
             </a-button>
           </a-row>
@@ -326,10 +337,10 @@ const defaultForm = {
 const form = reactive({ ...defaultForm })
 
 const accountTypeOptions = [
-  { label: 'Retailer', value: 'retailer' },
-  { label: 'Distributor', value: 'distributor' },
-  { label: 'Service Provider', value: 'service_provider' },
-  { label: 'Other', value: 'other' },
+  { label: 'Retailer', value: 0 },
+  { label: 'Distributor', value: 1 },
+  { label: 'Service Provider', value: 2 },
+  { label: 'Other', value: 3 },
 ]
 
 const hearAboutOptions = [
@@ -528,28 +539,28 @@ function submitForm() {
     .then(() => {
       loading.value = true
       const payload = {
-        recommendationCode: form.recommendationCode,
-        accountType: form.accountType,
+        referral: form.recommendationCode,
+        accType: form.accountType,
         firstName: form.firstName,
         lastName: form.lastName,
         email: form.email,
-        telephone: form.telephone,
+        phone: form.telephone,
         password: form.password,
         company: form.company,
         address1: form.address1,
         address2: form.address2,
         city: form.city,
-        postCode: form.postCode,
+        zip: form.postCode,
         country: form.country,
-        province: form.province,
-        hearAbout: form.hearAbout,
-        businessDuration: form.businessDuration,
-        locationCount: form.locationCount,
-        hardwareAmount: form.hardwareAmount,
-        liquidAmount: form.liquidAmount,
+        state: form.province,
+        hearUs: form.hearAbout,
+        businessTime: form.businessDuration,
+        locations: form.locationCount,
+        monthHardware: form.hardwareAmount,
+        monthLiquid: form.liquidAmount,
         contactMethod: form.contactMethod,
         notes: form.notes,
-        verifyCode: form.verifyCode,
+        code: form.verifyCode,
       }
       register(payload)
         .then(() => {
@@ -576,7 +587,6 @@ function goLogin() {
 .register-page {
   display: flex;
   justify-content: center;
-  background-color: #f6f7fb;
 }
 
 .register-container {
@@ -656,8 +666,9 @@ function goLogin() {
   height: 48px;
   font-size: 16px;
   font-weight: 600;
-  background: #0c1f51;
-  border-color: #0c1f51;
+  background: #100;
+  border-color: #100;
+  color: #FFFFFF;
   width: 460px;
 }
 
@@ -697,5 +708,9 @@ function goLogin() {
   .section-title {
     font-size: 18px;
   }
+}
+:deep(.ant-input-password){
+  overflow: hidden;
+  padding-top: 0;
 }
 </style>

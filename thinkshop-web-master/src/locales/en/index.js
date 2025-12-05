@@ -8,6 +8,7 @@ export default {
     "emailVerifyFailed": "Email verification failed"
   },
   "login": {
+    "ddressDetails":"Address",
     "registered": "Already registered?",
     "loginTip": "If you already have a thinkshop account, please log in.",
     "email": "Email",

@@ -19,7 +19,7 @@ export const routes = [
         path: '/login',
         component: () => import('@/views/login/index'),
         name: 'Login',
-        meta: {title: '登录', hiddenClassify: true}
+        meta: {title: '登录', hiddenClassify: false}
       },
       {
         path: '/agreement',

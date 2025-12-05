@@ -28,7 +28,7 @@
             </a-row>
           </section>
         <a-row align="center">
-          <a-button type="primary" class="submit-btn" block @click="submitForm" :loading="loading" align="center">
+          <a-button type="text" class="submit-btn" block @click="submitForm" :loading="loading" align="center">
             {{$t('login.login')}}
           </a-button>
         </a-row>
@@ -274,7 +274,6 @@ function goLogin() {
 .register-page {
   display: flex;
   justify-content: center;
-  background-color: #f6f7fb;
 }
 
 .register-container {
@@ -353,8 +352,9 @@ function goLogin() {
   height: 48px;
   font-size: 16px;
   font-weight: 600;
-  background: #0c1f51;
-  border-color: #0c1f51;
+  background: #110000;
+  border-color: #110000;
+  color: #FFFFFF;
   width: 460px;
 }
 

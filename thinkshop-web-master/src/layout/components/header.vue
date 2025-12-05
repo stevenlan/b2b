@@ -102,8 +102,8 @@ init()
   .c-warin{
     background-color: #FFBD44;
     width: 100vw;
-    height: 70px;
-    line-height: 70px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
   }
   .h-flex {

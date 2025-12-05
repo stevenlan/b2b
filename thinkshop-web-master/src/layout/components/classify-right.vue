@@ -36,7 +36,7 @@
                 </li>
               </ul>
             </template>
-            <i class="iconfont icon-zhucedenglu cursor-p]" @click="clickAvatar"/>
+            <i class="iconfont icon-zhucedenglu cursor-p" @click="clickAvatar"/>
           </a-popover>
           <a-badge :count="useStore.cartTotal" style="margin-left: 10px;line-height: 32px;">
             <i class="iconfont cursor-p icon-gouwudai" @click="toRoute({path: '/center'})"/>

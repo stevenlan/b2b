@@ -4,9 +4,9 @@
       <h2 class="section-title">{{$t('home.newsAndReviewTitle')}}</h2>
       <a-flex :gap="30">
         <div class="review-card" v-for="(item, index) in list" :key="index" @click="toRouter(item)">
-          <img :src="item.img" :alt="item.title" class="review-image" />
+          <img :src="item.cover" :alt="item.title" class="review-image" />
           <h3 class="review-title">{{ item.title }}</h3>
-          <p class="review-description">{{ item.description }}</p>
+          <p class="review-description">{{ item.mainPoint }}</p>
         </div>
       </a-flex>
       <a-button class="view-all-btn">

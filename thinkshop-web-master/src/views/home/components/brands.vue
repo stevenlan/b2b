@@ -6,7 +6,7 @@
         <a-flex justify="space-around">
           <div class="brand-item" v-for="(item, index) in list" :key="index">
             <div class="brand-image-wrapper">
-              <img :src="item.img" :alt="item.name" />
+              <img :src="item.brandImage" :alt="item.name" />
             </div>
             <p>{{ item.name }}</p>
           </div>
@@ -26,8 +26,12 @@ function toRouter(item) {
 }
 
 const list = ref(null)
+const query = ref({
+  pageNum:1,
+  pageSize:5
+})
 function getList(){
-  brandsList().then(res=>{
+  brandsList(query.value).then(res=>{
     list.value = res.rows
   })
 }
@@ -55,7 +59,7 @@ getList()
     align-items: center;
     gap: 20px;
     p {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
     }
   }

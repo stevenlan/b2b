@@ -8,6 +8,7 @@ export default {
     emailVerifyFailed: '邮箱校验失败'
   },
   login: {
+    addressDetails:'地址信息',
     registered: '已注册?',
     loginTip: '如果您已经拥有thinkshop账户，请登录。',
     email: '邮箱',

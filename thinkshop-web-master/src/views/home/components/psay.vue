@@ -12,13 +12,13 @@
         >
           <swiper-slide v-for="(item, index) in list" :key="index">
             <div class="testimonial-card" @click="toRouter(item)">
-              <a-rate :value="item.rating" disabled />
-              <p class="testimonial-text">{{ item.text }}</p>
+              <a-rate :value="item.score" disabled />
+              <p class="testimonial-text">{{ item.comment }}</p>
               <div class="user-info">
                 <div class="user-avatar">
-                  <img :src="item.avatar" :alt="item.name" />
+                  <img :src="item.imageUrlSet[0]" :alt="item.commentUser" />
                 </div>
-                <p class="user-name">- {{ item.name }}</p>
+                <p class="user-name">{{ item.commentUser }}</p>
               </div>
             </div>
           </swiper-slide>
@@ -48,8 +48,12 @@ function toRouter(item) {
 const modules = ref([Autoplay, Pagination, Navigation])
 
 const list = ref(null)
+const query = ref({
+  pageNum:1,
+  pageSize:5
+})
 function getList(){
-  psaysList().then(res=>{
+  psaysList(query.value).then(res=>{
     list.value = res.rows
   })
 }
@@ -80,7 +84,6 @@ getList()
     .testimonial-text {
       font-size: 18px;
       line-height: 1.6;
-      color: #555;
       margin-bottom: 32px;
     }
     .user-info {
