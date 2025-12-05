@@ -28,10 +28,9 @@ export default defineConfig(({ mode, command }) => {
       host: true,
       open: true,
       proxy: {
-        '/dev-api': {
-          target: 'https://thinkshop.zkthink.com/stage-api',
-          changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+        '/stage-api': {
+          target: 'http://120.25.120.136',
+          changeOrigin: true
         }
       }
     },

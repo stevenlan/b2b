@@ -21,10 +21,17 @@ import {
   Affix,
   Table,
   Rate,
-  Image
+  Image,
+  Menu,
+  Dropdown,
+  Row,
+  Col
 } from 'ant-design-vue';
-
 export default function  signAntd(app) {
+  app.use(Row)
+  app.use(Col)
+  app.use(Dropdown)
+  app.use(Menu)
   app.use(Button)
   app.use(Badge)
   app.use(Tabs)

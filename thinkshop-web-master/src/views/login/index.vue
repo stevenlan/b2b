@@ -1,62 +1,51 @@
 <template>
-  <div class="p-login">
-    <div class="main-con">
-      <p class="m-title">{{`${isLogin?$t('login.registered'):$t('login.register')}`}}</p>
-      <p class="sub-title">{{`${isLogin?$t('login.loginTip'):$t('login.registerTip')}`}}</p>
-      <a-form
-        autocomplete="off"
-        :model="form"
-      >
-        <a-form-item v-bind="validateInfos.firstName" v-if="!isLogin">
-            <c-input v-model:value="form.firstName" placeholder="First name*"/>
-        </a-form-item>
-        <a-form-item v-bind="validateInfos.lastName" v-if="!isLogin">
-            <c-input v-model:value.trim="form.lastName" placeholder="Last name*"/>
-        </a-form-item>
-        <a-form-item v-bind="validateInfos.email">
-            <c-input v-model:value="form.email" :placeholder="`${$t('login.email')}*`"/>
-        </a-form-item>
-        <a-form-item v-bind="validateInfos.code" v-if="!isLogin">
-          <c-input v-model:value="form.code" :placeholder="`${$t('login.code')}*`" class="c-input" :funIcon="true">
-              <a-button
-                type="text"
-                @click="sendCode"
-                :disabled="isCode"
-              >
-                {{`${isCode?time+'s':$t('login.getCode')}`}}
-              </a-button>
-          </c-input>
-        </a-form-item>
-        <a-form-item v-bind="validateInfos.password" class="p-item">
-            <c-input type="password" v-model:value.trim="form.password" :placeholder="`${$t('login.password')}*`"/>
-        </a-form-item>
-      </a-form>
-      <span class="tip cursor-p" v-if="isLogin" @click="openPasswordModal">{{$t('login.forgetPassword')}}？</span>
-      <div class="login-box">
-        <a-button
-          class="login-btn s-btn"
-          @click="submitForm"
-          :loading="loading"
-        >
-          {{`${isLogin?$t('login.login'):$t('login.register')}`}}
-        </a-button>
-        <p class="r-tip">
-          {{$t(`login.${isLogin?'no':'has'}Count`)}}，
-          <span class="cursor-p" @click="switchFun">{{`${isLogin?$t('login.quickRegister'):$t('login.toLogin')}`}}</span>
-        </p>
-        <div class="parting-line" v-if="isLogin">
-          <span>{{$t('login.otherLogin')}}</span>
+  <div>
+    <div v-if="!showRegister" class="register-page">
+      <div class="register-container">
+        <h1 class="page-title">{{$t('login.pageTitleLogin')}}</h1>
+        <p class="page-subtitle">{{$t('login.pageSubtitle')}}</p>
+        <a-form autocomplete="off" :model="form" layout="vertical">
+          <section class="form-section">
+            <a-row :gutter="24" style="justify-content: center">
+              <a-col :span="12">
+                <a-form-item v-bind="validateInfos.email">
+                  <template #label>
+                    <span class="label-required">Email<span class="required">*</span></span>
+                  </template>
+                  <c-input v-model:value="form.email" placeholder="Email" />
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row :gutter="24" style="justify-content: center">
+              <a-col :span="12">
+                <a-form-item v-bind="validateInfos.password">
+                  <template #label>
+                    <span class="label-required">Password<span class="required">*</span></span>
+                  </template>
+                  <c-input v-model:value="form.password" placeholder="Password" />
+                </a-form-item>
+              </a-col>
+            </a-row>
+          </section>
+        <a-row align="center">
+          <a-button type="primary" class="submit-btn" block @click="submitForm" :loading="loading" align="center">
+            {{$t('login.login')}}
+          </a-button>
+        </a-row>
+        <a-row align="center" style="margin-top:12px;">
+          <span class="tip cursor-p" @click="openPasswordModal">{{$t('login.forgetPassword')}}？</span>
+        </a-row>
+        </a-form>
+
+        <div class="bottom-link">
+          {{$t('login.noCount')}}
+          <span class="link" @click="goLogin">{{$t('login.register')}}</span>
         </div>
-        <div class="other-type" v-if="isLogin">
-          <Svg iconName='icon-guge'style="margin-right: 24px;" @click="otherLogin(1)" class="cursor-p"></Svg>
-          <Svg iconName='icon-facebook' @click="otherLogin(2)" class="cursor-p"></Svg>
-        </div>
-        <p class="r-tip" v-else>
-          {{$t('login.agree')}}
-          <span class="cursor-p" @click="toDeal">{{$t('login.deal')}}</span>
-        </p>
       </div>
     </div>
+
+    <Register v-else @switchToLogin="showRegister=false"/>
+
     <ForgetPassword v-model="open"/>
   </div>
 </template>
@@ -67,11 +56,13 @@ import Svg from './svg.vue'
 import {register, login, googleLogin, facebookLogin, getSignCode} from '@/api/login'
 import useUserStore from '@/store/modules/user'
 import ForgetPassword from './forgetPassword.vue'
+import Register from "@/views/login/register.vue";
 
 const userStore = useUserStore()
 const route = useRoute();
 const router = useRouter();
 const {proxy} = getCurrentInstance()
+const showRegister = ref(false)
 
 const useForm = Form.useForm;
 const defaultForm = {
@@ -207,6 +198,10 @@ function otherLogin(type) {
     window.open(r.data, '_self')
   })
 }
+// 跳转注册
+function goLogin() {
+  showRegister.value = true
+}
 </script>
 
 <style lang="scss" scoped>
@@ -274,6 +269,130 @@ function otherLogin(type) {
         text-align: center;
       }
     }
+  }
+}
+.register-page {
+  display: flex;
+  justify-content: center;
+  background-color: #f6f7fb;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 1070px;
+  padding: 48px 56px 56px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 12px;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #8c8c8c;
+  margin-bottom: 40px;
+}
+
+.form-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 24px;
+}
+
+.item-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.item-tip {
+  font-size: 12px;
+  font-weight: 400;
+  color: #8c8c8c;
+}
+
+.label-required {
+  font-weight: 500;
+  color: #1d1d1f;
+}
+
+.required {
+  margin-left: 4px;
+  color: #f5222d;
+}
+
+.code-btn {
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+.agreement-item {
+  margin-top: 8px;
+}
+
+.link {
+  color: #1c3c8c;
+  margin-left: 6px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.submit-btn {
+  margin-top: 16px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #0c1f51;
+  border-color: #0c1f51;
+  width: 460px;
+}
+
+.bottom-link {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #4b4b4d;
+}
+
+:deep(.ant-form-item) {
+  margin-bottom: 20px;
+}
+
+:deep(.ant-input),
+:deep(.ant-input-affix-wrapper),
+:deep(.ant-select-selector) {
+  border-radius: 8px;
+  min-height: 44px;
+}
+
+:deep(.ant-input-textarea-show-count .ant-input),
+:deep(.ant-input-textarea .ant-input) {
+  min-height: auto;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    padding: 32px 20px;
+  }
+
+  .page-title {
+    font-size: 26px;
+  }
+
+  .section-title {
+    font-size: 18px;
   }
 }
 </style>

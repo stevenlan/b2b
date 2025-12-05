@@ -1,8 +1,8 @@
 <template>
   <div class="c-layout">
     <router-view v-slot="{Component, route}">
+      <Header/>
       <a-affix>
-        <Header/>
         <Classify v-if="!route.meta.hiddenClassify"/>
       </a-affix>
       <component :is="Component" :key="route.path" style="minHeight: calc(100vh - 280px);"/>
@@ -20,7 +20,7 @@ import Classify from './components/classify.vue'
 
 <style lang="scss" scoped>
 .c-layout {
-  background: #ffffff;
+  background: #FFFFFF;
   .d-height {
     min-height: calc(100vh - 363px);
   }

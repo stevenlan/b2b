@@ -4,7 +4,7 @@ import en from './en'
 import cn from './cn'
 
 const getLanguage = () => {
-  return cache.local.get('lang') || 'zh_CN'
+  return cache.local.get('lang') || 'en_US'
 }
 
 const i18n = createI18n({

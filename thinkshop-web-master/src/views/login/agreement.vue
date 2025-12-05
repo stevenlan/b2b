@@ -11,12 +11,12 @@ import {userDeal} from '@/api/login'
 
 const dealHtml = ref('')
 
+
 function getDeal() {
   userDeal({type: 1}).then(r => {
     dealHtml.value = r.data
   })
 }
-
 getDeal()
 </script>
 

@@ -621,11 +621,6 @@ core-js@^3.15.1:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.37.1.tgz#d21751ddb756518ac5a00e4d66499df981a62db9"
   integrity sha512-Xn6qmxrQZyB0FFY8E3bgRXei3lWDJHhvI+u0q9TKIYM49G8pAr0FgnnrFRAmsbptZL1yxRADVXn+x5AGsbBfyw==
 
-country-region-data@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/country-region-data/-/country-region-data-3.0.0.tgz#9251cff57c22e450cbe96a7e50a3a23362d4304a"
-  integrity sha512-jpZwc6coXayi3aAv2HHTC9vhwRJB2zdur+coBlIZo1IVMonzylRR4Asf5j7evtUzdZPODdHrJ8CzEFK6MGUAgg==
-
 csstype@^3.1.1, csstype@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"

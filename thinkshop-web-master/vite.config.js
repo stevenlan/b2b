@@ -22,14 +22,13 @@ export default defineConfig(({mode, command}) => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
     server: {
-      port: 8086,
+      port: 8087,
       host: true,
       open: true,
       proxy: {
-        '/dev-api': {
-          target: 'https://thinkshop.zkthink.com/stage-api',
-          changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+        '/stage-api': {
+          target: 'http://120.25.120.136',
+          changeOrigin: true
         }
       }
     },

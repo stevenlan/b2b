@@ -1,146 +1,134 @@
 <template>
   <div class="c-footer">
+    <h2 class="section-title">LOST ANGEL</h2>
     <div class="main-con w-width">
-      <ul class="m-cell">
-        <li class="logo v-flex">
-          <img class="img" :src="useSetting.design.pageBottomUrl || fLogo"/>
-          <p>{{useSetting.design.copyright}}</p>
-        </li>
-        <li v-for="(item, index) in mList" :key="index">
-          <ul class="sub-cell v-flex">
-            <li>{{item.title}}</li>
-            <li v-for="(it, i) in item.children" :key="i">{{it.label}}{{`${it.value?': '+it.value:''}` }}</li>
+      <a-flex justify="space-between">
+        <div class="footer-col brand-info bold">
+          <p>Lost Angel is a disposable fashionablevape brand carefully created by COILART,a world-renowned vape brand team. TheCOILART team adheres to the productconcept of “fashionable appearance andultimate taste first”</p>
+        </div>
+        <div class="footer-col links bold">
+          <h4>CUSTOMER SUPPORT</h4>
+          <ul>
+            <li v-for="link in customerSupportLinks" :key="link"><a>{{ link }}</a></li>
           </ul>
-        </li>
-        <li class="code-list">
-          <img v-for="(it, i) in codeList" :key="i" :src="it"/>
-        </li>
-      </ul>
+        </div>
+        <div class="footer-col contact-info">
+          <h4>CONTACT INFO</h4>
+          <p><strong>Address:</strong><br>156 W 228th Street, Unit A, Torrance, CA 90501</p>
+          <p><strong>Email:</strong><br>Wholesale@lostangelvape.com(Wholesale)<br>spain@lostangelvape.com(Spanish)<br>russia@lostangelvape.com(Russia)</p>
+          <a-button class="chat-btn">Chat online</a-button>
+        </div>
+      </a-flex>
+      <div class="social-icons">
+        <a v-for="icon in socialIcons" :key="icon.name" :href="icon.link" target="_blank">
+          <component :is="icon.component" />
+        </a>
+      </div>
     </div>
+    <p class="copyright">Copyright 2025 All Rights Reserved</p>
   </div>
 </template>
 
 <script setup>
-import useSettingStore from '@/store/modules/setting'
-import fLogo from '@/assets/images/common/white_logo.png'
+import { ref } from 'vue';
+import { TwitterOutlined, FacebookFilled, InstagramFilled } from '@ant-design/icons-vue';
+// Assuming 'X' icon is not in antd, using a placeholder or another icon
+const XIcon = TwitterOutlined; // Placeholder
 
-const useSetting = useSettingStore()
-const {proxy} = getCurrentInstance()
+const customerSupportLinks = ref(['About Us', 'Contact Us', 'Download', 'Verify Product']);
 
-const codeList = computed(() => {
-  const {pageBottomQrCodeUrl} = useSetting.design
-  if(pageBottomQrCodeUrl) return pageBottomQrCodeUrl.split(',')
-  return []
-})
-const mList = computed(() => {
-  const {address, email, phone, other} = useSetting.design
-  return [
-    // {
-    //   title: '法律信息',
-    //   children: [
-    //     {label: '法律条款', value: '', type: ''},
-    //     {label: '隐私政策/Cookies', value: '', type: ''},
-    //     {label: '法律申明', value: '', type: ''},
-    //   ]
-    // },
-    // {
-    //   title: '购物帮助',
-    //   children: [
-    //     {label: '付款', value: '', type: ''},
-    //     {label: '配送', value: '', type: ''},
-    //     {label: '换货及退货', value: '', type: ''},
-    //   ]
-    // },
-    // {
-    //   title: '客户服务',
-    //   children: [
-    //     {label: '关于订单', value: '', type: ''},
-    //     {label: '产品维护', value: '', type: ''},
-    //     {label: '产品维修', value: '', type: ''},
-    //   ]
-    // },
-    {
-      title: proxy.$t('layout.aboutUs'),
-      children: [
-        {label: proxy.$t('layout.tel'), value: phone, type: ''},
-        {label: proxy.$t('layout.address'), value: address, type: ''},
-        {label: proxy.$t('layout.email'), value: email, type: ''},
-      ]
-    }
-  ]
-})
-
-ref()
+const socialIcons = ref([
+  { name: 'X', component: XIcon, link: '#' },
+  { name: 'Facebook', component: FacebookFilled, link: '#' },
+  { name: 'Twitter', component: TwitterOutlined, link: '#' }, // Assuming the third icon is Twitter
+  { name: 'Instagram', component: InstagramFilled, link: '#' },
+]);
 </script>
 
 <style lang="scss" scoped>
 .c-footer {
-  background: #262626;
-  .main-con {
-    padding: 48px 0;
-    margin: 0 auto;
-    background: #262626;
-    ul, p {
-      margin-bottom: 0px !important;
-    }
-    .m-cell {
-      color: #FFFFFF;
-      display: flex;
-      .v-flex {
-          height: 119px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-      li {
-        flex: 1;
-        font-size: 14px;
-        .sub-cell {
-          height: 119px;
-          li {
-            line-height: initial;
-            &:nth-child(n+2) {
-              font-size: 12px;
-            }
-          }
-        }
+  padding: 0px 0 30px;
+  .section-title{
+    width: 66%;
+    margin: 0 auto 25px;
+    font-weight: 800;
+    font-size: 30px;
+  }
 
-        &.logo {
-          position: relative;
-          width: 340px;
-          .img {
-            width: 77px;
-            height: 22px;
-          }
-          p {
-            color: #8C8C8C;
-            font-size: 12px;
-          }
-          &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            height: 119px;
-            width: 1px;
-            background: #444444;
-            top: 0;
-            right: 50px;
-          }
-        }
-        &.code-list {
-          flex: 2;
-          text-align: right;
-          img {
-            width: 128px;
-            height: 100%;
-            object-fit: cover;
-            &:nth-child(n+2) {
-              margin-left: 50px;
-            }
-          }
+  .main-con {
+    margin: 0 auto;
+    width: 66%;
+    padding: 30px 0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    margin-bottom: 35px;
+  }
+
+  .footer-col {
+    width: 30%;
+    &.brand-info p {
+      line-height: 1.8;
+    }
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #000;
+    }
+    &.links ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: 16px;
+        a {
+          color: #000;
+          text-decoration: none;
+          &:hover { text-decoration: underline; }
         }
       }
     }
+    &.contact-info p {
+      line-height: 1.8;
+      color: #000;
+      margin-bottom: 16px;
+    }
+    .chat-btn {
+      background-color: #0d1a33;
+      color: white;
+      border-radius: 8px;
+      height: 40px;
+      padding: 0 24px;
+    }
   }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    a {
+      font-size: 24px;
+      color: #fff;
+      background-color: #D4398F;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .ant-divider {
+    margin: 40px 0;
+  }
+
+  .copyright {
+    text-align: center;
+    color: #999;
+  }
+}
+.bold{
+  font-weight: bold;
 }
 </style>

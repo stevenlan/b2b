@@ -24,6 +24,7 @@
             <a-button
               type="text"
               @click="sendCode"
+              :loading="getCoding"
               :disabled="isCode"
             >
               {{`${isCode?time+'s':$t('login.getCode')}`}}
@@ -41,7 +42,7 @@
 </template>
 
 <script setup>
-import { Form } from 'ant-design-vue';
+import {Form, message} from 'ant-design-vue';
 import {getCode, forgetPassword} from '@/api/login'
 
 const {proxy} = getCurrentInstance()
@@ -98,6 +99,7 @@ const { resetFields, validate, validateInfos } = useForm(
   })
 )
 // 控制发送验证码
+const getCoding = ref(false)
 const isCode = ref(false)
 const time = ref(60)
 const timer = ref(null)
@@ -110,7 +112,10 @@ function resetTimer() {
 // 发送验证码
 function sendCode() {
   validate(['email']).then(res => {
+    getCoding.value = true
     getCode({email: res.email}).then(() => {
+      message.success(proxy.$t('common.codeSent'));
+      getCoding.value = false
       isCode.value = true
       timer.value = setInterval(() => {
         time.value--
@@ -119,7 +124,7 @@ function sendCode() {
         }
       }, 1000)
     })
-  })
+  }).catch(() => { message.error(proxy.$t('common.emailVerifyFailed')) })
 }
 function cancel() {
   resetFields()

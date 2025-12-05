@@ -1,53 +1,8 @@
 <template>
   <div class="c-header">
-    <div class="w-width main-con h-flex">
+    <div class="c-warin">{{$t('layout.nicotineWarning')}}</div>
+    <div class="w-width main-con h-flex" style="justify-content: center;">
       <img class="logo cursor-p" :src="useSetting.design.pageTopUrl || logo" @click="toRoute({path: '/index'})"/>
-      <ul class="r-p h-flex right-nav">
-        <li v-for="it in iconList" :key="it.type" class="nav-item">
-          <a-badge :count="useStore.cartTotal" v-if="it.type===4">
-            <i :class="['iconfont', it.icon, 'cursor-p']" @click="toRoute(it)"/>
-          </a-badge>
-          <a-popover v-else-if="it.type===3" title="" placement="bottomRight" :arrow="!!useUser.token">
-            <template #content v-if="!!useUser.token">
-              <ul class="center-cell">
-                <li>
-                  <a-flex justify="space-between" align="center">
-                    <div class="user-img">
-                      <img :src="avatar"/>
-                      <span>{{useUser.userInfo.firstName || ''}}{{useUser.userInfo.lastName || ''}}</span>
-                    </div>
-                    <img class="exit cursor-p" :src="logout" @click="useUser.logOut()"/>
-                  </a-flex>
-                </li>
-                <li
-                  v-for="it in centerList"
-                  :key="it.type"
-                  class="cursor-p"
-                  @click="clickCenter(it)"
-                >
-                  {{it.label}}
-                </li>
-              </ul>
-            </template>
-              <i :class="['iconfont', it.icon, 'cursor-p']" @click="clickAvatar"/>
-          </a-popover>
-          <div v-else>
-            <a-flex align="center">
-              <Transition name="slide-fade">
-                <a-flex v-if="it.type===1&&showSearch" class="search" align="center">
-                  <i class="iconfont icon-sousuo" @click="search"/>
-                  <a-input
-                    v-model:value.trim="keyWord"
-                    :placeholder="`${$t('common.search')}...`"
-                    @pressEnter="search"
-                  />
-                </a-flex>
-              </Transition>
-              <i :class="['iconfont',  it.type===1&&showSearch?'icon-guanbi-1':it.icon, 'cursor-p']" @click="toRoute(it)"/>
-            </a-flex>
-          </div>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -144,94 +99,24 @@ init()
 .c-header {
   border-bottom: 1px #E5E5E5 solid;
   background: #ffffff;
+  .c-warin{
+    background-color: #FFBD44;
+    width: 100vw;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+  }
   .h-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .main-con {
-    margin: 0 auto;
-    height: 72px;
+    margin: 10px auto;
+    height: 79px;
     .logo {
-      width: 77px;
-      height: 20px;
-    }
-    .right-nav {
-      margin-bottom: 0;
-      .nav-item {
-        padding-left: 16px;
-        .iconfont {
-          font-size: 22px;
-        }
-
-        .search {
-          :deep(.ant-input) {
-            width: 400px;
-            border: none;
-            border-bottom: 1px #262626 solid;
-            border-radius: 0;
-            &:hover,  &:focus, &:focus-visible {
-              border: none;
-              border-bottom: 1px #262626 solid;
-              border-radius: 0;
-              outline: none;
-              box-shadow: none;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-.center-cell {
-  li {
-    padding: 12px 24px;
-    font-size: 14px;
-    width: 200px;
-    box-sizing: border-box;
-    &:first-child {
-      padding: 16px 24px;
-      .user-img {
-        flex: 1;
-        img {
-          height: 32px;
-          width: 32px;
-        }
-        span {
-          display: inline-block;
-          word-break: break-word;
-          width: calc(100% - 32px);
-          vertical-align: middle;
-          padding-left: 8px;
-          box-sizing: border-box;
-        }
-      }
-      .exit {
-        height: 24px;
-        width: 24px;
-      }
-    }
-    &:nth-child(2) {
-      position: relative;
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 1px;
-        background: rgba(38,38,38,0.05);
-        width: calc(100% - 48px);
-        left: 24px;
-        top: 0;
-      }
-    }
-    &:nth-child(n + 2) {
-      &:hover {
-        background: rgba(38,38,38,0.05);
-        &::before {
-          display: none;
-        }
-      }
+      width: 86px;
+      height: 79px;
     }
   }
 }

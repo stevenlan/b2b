@@ -13,14 +13,13 @@ const service = axios.create({
   // 超时
   timeout: 10000
 })
-
 // request拦截器
 service.interceptors.request.use(config => {
   Object.assign(config.headers,
     {
-      Language: cache.local.get('lang') || 'zh_CN',
+      Language: cache.local.get('lang') || 'en_US',
       client: 'pc'
-    }
+}
   )
   // 设置headers参数
   if (getToken()) {

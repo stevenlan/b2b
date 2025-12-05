@@ -3,7 +3,9 @@ export default {
     confirm: '确定',
     cancel: '取消',
     search: '搜索',
-    tip: '提示' // new
+    tip: '提示',
+    codeSent: '验证码已发送',
+    emailVerifyFailed: '邮箱校验失败'
   },
   login: {
     registered: '已注册?',
@@ -35,9 +37,52 @@ export default {
     lastNameTip: '请输入lastName',
     hasAccount: '已有账户， 去登录',
     agree: '点击注册则代表您同意我们的 ', // new
-    deal: '《用户协议》' // new
+    deal: '《用户协议》',
+    pageTitleLogin: '登录',
+    pageSubtitle: '请填写以下信息',
+    signUpTitle: '注册',
+    signUpSubtitle: '请填写以下信息',
+    accountDetails: '账户信息',
+    recommendationCode: '推荐码',
+    recommendationTip: '结算时自动使用优惠券',
+    accountType: '账户类型',
+    telephone: '电话',
+    confirmPassword: '确认密码',
+    company: '公司',
+    address1: '地址一',
+    address2: '地址二',
+    city: '城市',
+    postCode: '邮编',
+    country: '国家',
+    region: '州/省',
+    hearAbout: '您是如何了解我们的？',
+    businessDuration: '您经营了多久？',
+    locationCount: '您有多少门店？',
+    hardwareAmount: '每月硬件销售额',
+    liquidAmount: '每月液体销售额',
+    contactMethod: '您偏好的联系方式是？',
+    notes: '备注/评论',
+    enterCodeBelow: '请输入下方的验证码',
+    verifyCode: '验证码',
+    createAccount: '创建账户',
+    privacyPolicy: '隐私政策',
+    alreadyHaveAccount: '已经拥有账户？',
+    hearAboutOptions: {
+      search_engine: '搜索引擎',
+      social_media: '社交媒体',
+      trade_show: '展会',
+      referral: '推荐',
+      other: '其他'
+    },
+    contactMethodOptions: {
+      email: '邮箱',
+      phone: '电话',
+      whatsapp: 'WhatsApp',
+      wechat: '微信'
+    }
   },
   layout: {
+    all:'全部',
     home: '首页', // new
     accout: '账户管理',
     myOrder: '我的订单',
@@ -46,8 +91,27 @@ export default {
     address: '地址',
     email: '邮件',
     tel: '电话',
+    typeToCheck:'按类别浏览',
+    seeAllDeel:'查看全部',
+    viewDetail:'查看详情',
     quickBuy: '立即选购', // new
-    viewMore: '探索全部' // new
+    viewMore: '探索全部',
+    categories: '分类',
+    nicotineWarning: '警告：本产品含有尼古丁。尼古丁具有成瘾性。'
+  },
+  home: {
+    newsletterTitle: '订阅邮件',
+    newsletterDesc: '订阅以获取每周的产品更新、降价信息等，不要错过！',
+    newsletterEmailPlaceholder: '邮箱',
+    newsletterSubscribe: '订阅',
+    newArrivalsTitle: '新品上架',
+    sale: '特价',
+    bestSellersTitle: '畅销商品',
+    featuredBrandsTitle: '精选品牌',
+    whatPeopleSayTitle: '用户评价',
+    newsAndReviewTitle: '新闻与评测',
+    viewAll: '查看全部',
+    new: '新品'
   },
   commodity: {
     total: '共',
