@@ -22,7 +22,7 @@
                   <template #label>
                     <span class="label-required">Password<span class="required">*</span></span>
                   </template>
-                  <c-input v-model:value="form.password" placeholder="Password" />
+                  <c-input type="password" v-model:value="form.password" placeholder="Password" />
                 </a-form-item>
               </a-col>
             </a-row>

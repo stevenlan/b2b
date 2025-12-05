@@ -32,7 +32,7 @@
                     class="cursor-p"
                     @click="clickCenter(item)"
                 >
-                  {{it.label}}
+                  {{item.label}}
                 </li>
               </ul>
             </template>

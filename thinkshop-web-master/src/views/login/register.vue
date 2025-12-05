@@ -226,15 +226,6 @@
                 />
               </a-form-item>
             </a-col>
-            <a-col :xs="24" :md="12">
-              <a-form-item :label="$t('login.notes')">
-                <a-textarea
-                  v-model:value="form.notes"
-                  :placeholder="$t('login.notes')"
-                  :auto-size="{ minRows: 2, maxRows: 4 }"
-                />
-              </a-form-item>
-            </a-col>
           </a-row>
         </section>
 
@@ -329,7 +320,6 @@ const defaultForm = {
   hardwareAmount: '',
   liquidAmount: '',
   contactMethod: undefined,
-  notes: '',
   verifyCode: '',
   agree: false,
 }
@@ -559,8 +549,7 @@ function submitForm() {
         monthHardware: form.hardwareAmount,
         monthLiquid: form.liquidAmount,
         contactMethod: form.contactMethod,
-        notes: form.notes,
-        code: form.verifyCode,
+        code: form.verifyCode
       }
       register(payload)
         .then(() => {
