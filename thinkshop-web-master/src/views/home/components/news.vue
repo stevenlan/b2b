@@ -25,10 +25,13 @@ const emit = defineEmits('taps')
 function toRouter(item) {
   emit('taps',item)
 }
-
+const query = ref({
+  pageNum:1,
+  pageSize:3
+})
 const list = ref(null)
 function getList(){
-  newsList().then(res=>{
+  newsList(query.value).then(res=>{
     list.value = res.rows
   })
 }

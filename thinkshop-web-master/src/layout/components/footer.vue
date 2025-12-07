@@ -19,11 +19,7 @@
           <a-button class="chat-btn">Chat online</a-button>
         </div>
       </a-flex>
-      <div class="social-icons">
-        <a v-for="icon in socialIcons" :key="icon.name" :href="icon.link" target="_blank">
-          <component :is="icon.component" />
-        </a>
-      </div>
+      <share-brands/>
     </div>
     <p class="copyright">Copyright 2025 All Rights Reserved</p>
   </div>
@@ -31,11 +27,9 @@
 
 <script setup>
 import { ref } from 'vue';
+import shareBrands from '@/components/shareBrands/index.vue'
 import { TwitterOutlined, FacebookFilled, InstagramFilled } from '@ant-design/icons-vue';
-// Assuming 'X' icon is not in antd, using a placeholder or another icon
 const XIcon = TwitterOutlined; // Placeholder
-
-const customerSupportLinks = ref(['About Us', 'Contact Us', 'Download', 'Verify Product']);
 
 const socialIcons = ref([
   { name: 'X', component: XIcon, link: '#' },
@@ -43,6 +37,7 @@ const socialIcons = ref([
   { name: 'Twitter', component: TwitterOutlined, link: '#' }, // Assuming the third icon is Twitter
   { name: 'Instagram', component: InstagramFilled, link: '#' },
 ]);
+const customerSupportLinks = ref(['About Us', 'Contact Us', 'Download', 'Verify Product']);
 </script>
 
 <style lang="scss" scoped>
@@ -98,24 +93,6 @@ const socialIcons = ref([
       border-radius: 8px;
       height: 40px;
       padding: 0 24px;
-    }
-  }
-
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 40px;
-    a {
-      font-size: 24px;
-      color: #fff;
-      background-color: #D4398F;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
     }
   }
 

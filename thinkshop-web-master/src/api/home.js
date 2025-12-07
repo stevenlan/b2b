@@ -53,3 +53,5 @@ export function newsList(params) {
     params
   })
 }
+
+

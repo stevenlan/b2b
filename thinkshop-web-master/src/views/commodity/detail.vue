@@ -37,6 +37,7 @@
           </div>
           <div class="info-cell">
             <p class="p-title">{{detail.productName}}</p>
+            <p class="p-title" style="font-size: 22px" v-if="detail.brandName">Brand：{{detail.brandName}}</p>
             <p class="intro">{{detail.introduce}}</p>
             <p class="price">{{currency}}{{formatPrice(sku.price) || formatPrice(detail.minPrice)}}</p>
             <div class="sku" v-if="detail.productAttr&&detail.productAttr.length">
@@ -72,6 +73,10 @@
                 :disabled="sku.stock===0"
               >{{$t('commodity.buy')}}</a-button>
               <a-button class="s-btn c-gray" @click="buyProduct(0)">{{$t('commodity.joinCart')}}</a-button>
+            </div>
+            <div>
+              <p class="intro" style="margin: 40px 0 15px">share to</p>
+              <share-brands/>
             </div>
           </div>
         </a-flex>
@@ -159,6 +164,15 @@ import emptyComment from '@/assets/images/empty_comment.png'
 
 import 'swiper/css'
 import {formatPrice} from "@/utils/index.js";
+import shareBrands from '@/components/shareBrands/index.vue'
+import { TwitterOutlined, FacebookFilled, InstagramFilled,CloseOutlined } from '@ant-design/icons-vue';
+
+const socialIcons = ref([
+  { name: 'X', component: CloseOutlined, link: `test?url=${window.location.href}` ,color:'#000'},
+  { name: 'Facebook', component: FacebookFilled, link: `test?url=${window.location.href}` ,color:'#264bb5'},
+  { name: 'Twitter', component: TwitterOutlined, link: `test?url=${window.location.href}` ,color:'#12b2d6'}, // Assuming the third icon is Twitter
+  { name: 'Instagram', component: InstagramFilled, link: `test?url=${window.location.href}` ,color:'#d4398f'},
+]);
 
 const router = useRouter()
 const useStore = useCommodityStore()
@@ -576,6 +590,22 @@ getDetail()
         }
       }
     }
+  }
+}
+.social-icons {
+  display: flex;
+  justify-content: left;
+  gap: 24px;
+  a {
+    font-size: 24px;
+    color: #fff;
+    background-color: #D4398F;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

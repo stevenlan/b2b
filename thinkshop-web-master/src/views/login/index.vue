@@ -395,4 +395,8 @@ function goLogin() {
     font-size: 18px;
   }
 }
+:deep(.ant-input-password){
+  overflow: hidden;
+  padding-top: 0;
+}
 </style>

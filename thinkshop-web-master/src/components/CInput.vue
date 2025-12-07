@@ -5,6 +5,7 @@
       v-if="props.type==='text'"
       v-model:value.trim="cValue"
       :placeholder="props.placeholder"
+      :disabled="disabled"
       @focus="handleFocus(true)"
       @blur="handleFocus(false)"
     >
@@ -39,6 +40,10 @@ const props = defineProps({
     default: 'text'
   },
   funIcon: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
     type: Boolean,
     default: false
   }
