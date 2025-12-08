@@ -1,6 +1,6 @@
 <template>
   <div class="p24">
-    <el-button type="primary" class="mb20" @click="() => {openLicense()}">新增类目</el-button>
+    <el-button type="primary" class="mb20" @click="() => {openLicenses()}">新增类目</el-button>
     <el-table
       :data="tableObj.rows"
       v-loading="loading"
@@ -40,6 +40,10 @@ const tableObj = reactive({
 })
 const loading = ref(false)
 const addRef = ref(null)
+const query = ref({
+  pageNum: 1,
+  pageSize:10
+})
 
 function getList() {
   loading.value = true
@@ -55,7 +59,7 @@ function getList() {
 const handleTableItem = (row, type) => {
   if(type==='edit') openLicense(row)
 }
-function openLicense(info={}) {
+function openLicenses(info={}) {
   addRef.value.open(info)
 }
 
