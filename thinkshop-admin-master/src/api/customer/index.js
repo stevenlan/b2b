@@ -195,3 +195,36 @@ export function updateIntegralRule(data) {
     data
   })
 }
+
+/* ---审核管理--- */
+// 审核列表
+export function queryLicense(params) {
+  return request({
+    url: `${pri}/license/list`,
+    method: 'get',
+    params
+  })
+}
+// 审核详情
+export function queryLicenseInfo(id) {
+  return request({
+    url: `${pri}/license/get/${id}`,
+    method: 'get'
+  })
+}
+// 审核通过
+export function approveLicense(params) {
+  return request({
+    url: `${pri}/license/approve`,
+    method: 'put',
+    params
+  })
+}
+// 审核驳回
+export function refuseLicense(params) {
+  return request({
+    url: `${pri}/license/refuse`,
+    method: 'put',
+    params
+  })
+}
