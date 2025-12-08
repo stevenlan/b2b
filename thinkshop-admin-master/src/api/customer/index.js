@@ -213,18 +213,18 @@ export function queryLicenseInfo(id) {
   })
 }
 // 审核通过
-export function approveLicense(params) {
+export function approveLicense(data) {
   return request({
     url: `${pri}/license/approve`,
     method: 'put',
-    params
+    data
   })
 }
 // 审核驳回
-export function refuseLicense(params) {
+export function refuseLicense(data) {
   return request({
     url: `${pri}/license/refuse`,
     method: 'put',
-    params
+    data
   })
 }

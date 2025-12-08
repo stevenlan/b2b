@@ -9,129 +9,80 @@
     @close="close"
     class="s-dialog"
   >
+    <div class="p24">
+      <el-row class="mb20">
+        <el-col>
+          <p><span class="label">公司名称：</span> {{info.company}}</p>
+        </el-col>
+      </el-row>
+      <el-row class="mb20">
+        <el-col :span="6">
+          <p><span class="label">国家：</span> {{info.country}}</p>
+        </el-col>
+        <el-col :span="6">
+          <p><span class="label">州/地区：</span> {{info.state}}</p>
+        </el-col>
+        <el-col :span="6">
+          <p><span class="label">城市：</span> {{info.city}}</p>
+        </el-col>
+        <el-col :span="6">
+          <p><span class="label">邮编：</span> {{info.zip}}</p>
+        </el-col>
+      </el-row>
+      <el-row class="mb20">
+        <el-col :span="24">
+          <p><span class="label">地址：</span> {{info.address1}}
+            <span v-if="info.address2"> {{info.address2}}</span>
+          </p>
+        </el-col>
+      </el-row>
+      <el-row class="mb20">
+        <el-col :span="24">
+          <p><span class="label">是如何了解我们的？：</span> {{info.hearUs}}</p>
+          <p><span class="label">经营了多久？：</span> {{info.businessTime}}</p>
+          <p><span class="label">有多少门店？：</span> {{info.locations}}</p>
+          <p><span class="label">每月硬件销售额：</span> {{info.monthHardware}}</p>
+          <p><span class="label">每月液体销售额：</span> {{info.monthLiquid}}</p>
+          <p><span class="label">偏好的联系方式是？：</span> {{info.contactMethod}}</p>
+        </el-col>
+      </el-row>
+      <el-row class="mb20">
+        <el-col :span="24">
+          <p><span class="label">许可证到期时间：</span> {{info.dueDate}}</p>
+        </el-col>
+      </el-row>
+      <el-row v-if="info.licenseFile" class="mb20">
+        <el-col :span="24">
+          <p>
+            <a v-if="info.licenseFile.indexOf('pdf') > -1 || info.licenseFile.indexOf('PDF') > -1" style="font-size: 20px;margin-left: 20px;" :href="info.licenseFile">
+              <el-button type="warning">查看许可文件</el-button></a>
+            <a v-else :href="info.licenseFile">
+              <img :src="info.licenseFile" class="img" />
+            </a>
+          </p>
+        </el-col>
+      </el-row>
+    </div>
     <el-form
       ref="formRef"
       :rules="rules"
       :model="formData"
       label-width="100px"
     >
-      <el-form-item label="公司名称" prop="company">
+      <el-form-item label="审核反馈" prop="notes">
         <el-input
-          class="w400"
-          v-model="formData.company"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="国家" prop="country">
-        <el-input
-          class="w400"
-          v-model="formData.country"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="州/地区" prop="state">
-        <el-input
-          class="w400"
-          v-model="formData.state"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="城市" prop="city">
-        <el-input
-          class="w400"
-          v-model="formData.city"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="邮编" prop="zip">
-        <el-input
-          class="w400"
-          v-model="formData.zip"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="地址1" prop="address1">
-        <el-input
-          class="w400"
-          v-model="formData.address1"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="地址2" prop="address2">
-        <el-input
-          class="w400"
-          v-model="formData.address2"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="hearUs" prop="hearUs">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.hearUs"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="businessTime" prop="businessTime">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.businessTime"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="locations" prop="locations">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.locations"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="monthHardware" prop="monthHardware">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.monthHardware"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="monthLiquid" prop="monthLiquid">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.monthLiquid"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="contactMethod" prop="contactMethod">
-        <el-input-textarea
-          class="w400"
-          v-model="formData.contactMethod"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="许可证到期时间" prop="dueDate">
-        <el-input
-          class="w400"
-          v-model="formData.dueDate"
-          aria-readonly="true"
-        />
-      </el-form-item>
-      <el-form-item label="许可文件" prop="licenseFile">
-        <div v-if="formData.licenseFile && formData.status != 1">
-          <a v-if="formData.licenseFile.indexOf('pdf') > -1 || formData.licenseFile.indexOf('PDF') > -1" style="font-size: 20px;margin-left: 20px;" :href="formData.licenseFile">
-            <CloudDownloadOutlined style="margin-right: 10px"/>file</a>
-          <a-image v-else :width="200" :src="formData.licenseFile"/>
-        </div>
-      </el-form-item>
-      <el-form-item label="审核意见" prop="notes">
-        <el-input-textarea
-          class="w400"
+          type="textarea"
+          class="w500"
           v-model="formData.notes"
           :controls="false"
-          placeholder="请输入审核意见"
+          placeholder="请输入审核反馈"
         />
       </el-form-item>
     </el-form>
     <template #footer>
+      <el-button @click="close()">取消</el-button>
       <el-button type="primary" @click="approveForm(formRef)">通过</el-button>
-      <el-button type="primary" @click="refuseForm(formRef)">拒绝</el-button>
+      <el-button type="danger" @click="refuseForm(formRef)">拒绝</el-button>
     </template>
   </el-dialog>
 </template>
@@ -148,6 +99,7 @@ const defaultForm = {
   notes: '',
   id: ''
 }
+const info = ref({})
 const formData = reactive({...defaultForm})
 const formRef = ref(null)
 const rules = ref({
@@ -165,8 +117,6 @@ let uploadSetting = reactive({
 // 层级类目数据
 function close() {
   Object.assign(formData, defaultForm)
-  firstLevel.value = []
-  secondLevel.value = []
   formRef.value.resetFields()
   visible.value = false
 }
@@ -203,11 +153,12 @@ function beforeImgUpload(rawFile) {
     return false;
   }
 }
-function open(info) {
-  const {id} = info
+function open(rd) {
+  const {id} = rd
   if(id) {
     formData.id = id
     queryLicenseInfo(id).then(res => {
+      info.value = res.data
       Object.keys(formData).forEach(key => {
         formData[key] = res.data[key]
       })
@@ -224,6 +175,9 @@ defineExpose({
 <style lang="scss" scoped>
 .w400 {
   width: 400px;
+}
+.w500 {
+  width: 500px;
 }
 .w250 {
   width: 250px;

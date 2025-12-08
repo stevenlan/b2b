@@ -53,5 +53,10 @@ export function newsList(params) {
     params
   })
 }
-
-
+//新闻详情
+export function newsDetail(id) {
+  return request({
+    url: `/mall/app/getNewInfo/${id}`,
+    method: 'get'
+  })
+}

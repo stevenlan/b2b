@@ -46,6 +46,12 @@ export const routes = [
         meta: {title: '商品详情'}
       },
       {
+        path: '/news-detail/:newsId(\\d+)',
+        component: () => import('@/views/news/detail'),
+        name: 'NewsDetail',
+        meta: {title: '新闻详情'}
+      },
+      {
         path: '/shopping',
         component: () => import('@/views/shopping/index'),
         name: 'Shopping',

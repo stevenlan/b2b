@@ -1,6 +1,5 @@
 <template>
   <div class="p24">
-    <el-button type="primary" class="mb20" @click="() => {openLicenses()}">新增类目</el-button>
     <el-table
       :data="tableObj.rows"
       v-loading="loading"
@@ -8,13 +7,16 @@
       :tree-props="{children: 'child', hasChildren: 'hasChildren'}"
     >
       <el-table-column label="公司名称" prop="company"/>
-      <el-table-column label="国家" prop="country"/>
-      <el-table-column label="州" prop="state"/>
-      <el-table-column label="城市" prop="city"/>
-      <el-table-column label="状态" prop="status"/>
+      <el-table-column label="邮箱" prop="email"/>
+      <el-table-column label="联系电话" prop="phone"/>
+      <el-table-column label="状态" prop="status">
+        <template #default="scope">
+          <dict-tag :options="sys_approve" :value="scope.row.status" />
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200" fixed="right">
         <template #default="scope">
-          <el-button type="primary" link @click="handleTableItem(scope.row, 'pending')">审核</el-button>
+          <el-button  v-if="scope.row.status == 2" type="primary" link @click="handleTableItem(scope.row, 'pending')">审核</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -34,6 +36,7 @@ import openLicense from "./pending.vue"
 import {queryLicense, queryLicenseInfo} from '@/api/customer'
 
 const { proxy } = getCurrentInstance();
+const { sys_approve } = proxy.useDict("sys_approve");
 const tableObj = reactive({
   total: 0,
   rows: []
@@ -57,9 +60,9 @@ function getList() {
   })
 }
 const handleTableItem = (row, type) => {
-  if(type==='edit') openLicense(row)
+  appLicenses(row)
 }
-function openLicenses(info={}) {
+function appLicenses(info={}) {
   addRef.value.open(info)
 }
 
