@@ -10,6 +10,8 @@ const useUserStore = defineStore(
     state: () => ({
       token: getToken(),
       userInfo: {},
+      showAgeVerity: false,
+      resolvePromise: null, //
     }),
     actions: {
       // 登录
@@ -49,6 +51,21 @@ const useUserStore = defineStore(
             reject(err)
           })
         })
+      },
+      // 触发弹窗，并返回一个 Promise
+      triggerAgeVerity() {
+        this.showAgeVerity = true;
+        return new Promise((resolve) => {
+          this.resolvePromise = resolve;
+        });
+      },
+      // 弹窗完成时调用
+      handleVerityComplete() {
+        this.showAgeVerity = false;
+        if (this.resolvePromise) {
+          this.resolvePromise();
+          this.resolvePromise = null;
+        }
       }
     }
   })

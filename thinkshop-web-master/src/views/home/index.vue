@@ -117,7 +117,6 @@ function getHomeSetting() {
   getHomeDesign().then(r => {
     const {data} = r
     bannerList.value = data.banners
-    console.log(r)
     homeList.value = Object.keys(data).reduce((list, name) => {
       let config = data[name]
       // 分组商品展示4条商品

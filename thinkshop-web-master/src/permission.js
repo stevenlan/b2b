@@ -3,11 +3,14 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/cookie'
 import useSettingStore from '@/store/modules/setting'
+import useUserStore from "@/store/modules/user.js";
 
 NProgress.configure({ showSpinner: false });
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  const useUser = useUserStore()
+  useUser.triggerAgeVerity();
   const useSetting = useSettingStore()
   const routeRule = () => {
     if(getToken() && to.path==='/login') {
