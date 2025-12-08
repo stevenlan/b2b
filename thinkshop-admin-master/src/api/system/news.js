@@ -39,6 +39,6 @@ export function updateNews(data) {
 export function delNews(noticeId) {
   return request({
     url: '/mall/admin/siteNew/remove/' + noticeId,
-    method: 'delete'
+    method: 'get'
   })
 }

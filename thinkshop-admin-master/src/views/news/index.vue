@@ -1,19 +1,20 @@
 <template>
   <div class="p24">
     <div class="mb16">
-      <el-button
-        type="danger"
-        plain
-        @click="handleDelete()"
-      >批量删除</el-button>
+<!--      <el-button-->
+<!--        type="danger"-->
+<!--        plain-->
+<!--        @click="handleDelete()"-->
+<!--      >批量删除</el-button>-->
       <el-button
         type="primary"
         icon="Plus"
         @click="addComment('add')"
       >新增</el-button>
     </div>
-    <el-table  v-loading="loading" :data="tableObj.rows" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="50" align="center" />
+    <el-table  v-loading="loading" :data="tableObj.rows">
+<!--      <el-table-column type="selection" width="50" align="center" />-->
+      <el-table-column label="id" prop="id" width="100"/>
       <el-table-column label="标题" prop="title"/>
       <el-table-column label="简介" prop="mainPoint"/>
 <!--      <el-table-column label="状态">-->
@@ -51,7 +52,7 @@
 <script setup>
 
 import Add from  './add.vue'
-import {listNews, updateNews, delNews, getNews} from '@/api/system/news'
+import {listNews, updateNews, delNews} from '@/api/system/news'
 
 const {proxy} = getCurrentInstance()
 
@@ -88,20 +89,14 @@ function handleDelete(row) {
   const ids = row?row.id:selectedRows.value.join(',')
   if(!ids) return proxy.$modal.msgWarning('请选择要删除的新闻')
   proxy.$modal.confirm('确定要删除该新闻吗？', '删除提示')
-  .then(() => {return delNews({ids})})
+  .then(() => {return delNews(ids)})
   .then(() => {
     proxy.$modal.msgSuccess('删除成功')
     getList()
   })
 }
 function addComment(type,row) {
-  if(type=='edit'){
-    getNews(row.id).then(res => {
-      addRef.value.open(type,res)
-    })
-  }else{
-    addRef.value.open(type)
-  }
+  addRef.value.open(type,row?.id)
 }
 function handleSelectionChange(rows) {
   selectedRows.value = rows.map(it => it.id)

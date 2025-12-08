@@ -63,7 +63,7 @@
 
 import { getToken } from "@/utils/auth"
 import imgUploadIcon from '@/assets/images/img_upload.png'
-import {addNews,updateNews} from '@/api/system/news'
+import {addNews, getNews, updateNews} from '@/api/system/news'
 import Editors from "@/views/news/editors.vue";
 const {proxy} = getCurrentInstance()
 const emits = defineEmits('reload')
@@ -81,7 +81,7 @@ const form = ref({
   cover: '',
   mainPoint: '',
   title: '',
-  content: '123222',
+  content: '',
 })
 const formRef = ref(null)
 const rules = ref({
@@ -125,7 +125,9 @@ function saveForm(formEl) {
   formEl.validate((valid, err)=>{
     if(valid) {
       const api = editType =='add'?addNews:updateNews
-      api(form.value).then(res => {
+      let query = Object.assign({},form.value)
+      query.content = encodeURIComponent(query.content)
+      api(query).then(res => {
         close()
         emits('reload')
         proxy.$modal.msgSuccess(editType =='add'?`新增成功`:'修改成功')
@@ -134,17 +136,19 @@ function saveForm(formEl) {
   })
 }
 const editType = ref('add')
-function open(type,res) {
+function open(type,id) {
   editType.value = type
   visible.value = true
   if(type == 'edit'){
-    const {data} = res
-    form.value.id = data.id
-    form.value.cover = data.cover
-    form.value.mainPoint = data.mainPoint
-    form.value.title = data.title
-    form.value.content = data.content
-    fileList.value =  [{name: '1.jpg', url: data.cover}]
+    getNews(id).then(res => {
+      const {data} = res
+      form.value.id = data.id
+      form.value.cover = data.cover
+      form.value.mainPoint = data.mainPoint
+      form.value.title = data.title
+      form.value.content = decodeURIComponent(data.content)
+      fileList.value =  [{name: '1.jpg', url: data.cover}]
+    })
   }
 }
 
