@@ -11,7 +11,7 @@
           </a-button>
           <template #overlay>
             <a-menu>
-              <div v-for="item in tabList">
+              <div v-for="item in tabList"  @click="toRoute(item)">
                 <a-menu-item :key="item.categoryId">{{item.name}}</a-menu-item>
                 <a-menu-divider />
               </div>

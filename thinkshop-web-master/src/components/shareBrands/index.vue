@@ -45,6 +45,10 @@ const socialIcons = ref([
 .icon-tweer:before {
   content: "\e651";
 }
+.icon-tweer {
+  font-size: 26px;
+  margin-top: 3px;
+}
 .social-icons {
   display: flex;
   justify-content: center;

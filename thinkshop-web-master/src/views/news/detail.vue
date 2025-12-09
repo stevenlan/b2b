@@ -3,15 +3,17 @@
     <div class="w-width main-con">
       <div class="info-box">
         <p class="p-title">{{detail.title}}</p>
+        <p class="p-time">{{formatDateTime(detail.createTime)}}</p>
       </div>
       <div class="comment-detail">
-        <div v-html="detail.content"/>
+        <div v-html="decodeURIComponent(detail.content)"/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import {formatDateTime} from "@/utils/index.js";
 import {newsDetail} from '@/api/home'
 import useCommodityStore from '@/store/modules/commodity'
 import useSettingStore from '@/store/modules/setting'
@@ -50,6 +52,11 @@ getDetail()
     border-bottom: 1px #E5E5E5 solid;
     .p-title {
       font-size: 24px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .p-time{
+      font-size: 15px;
       margin-bottom: 4px;
       text-align: center;
     }

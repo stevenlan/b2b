@@ -19,11 +19,10 @@
 <script setup>
 import {newsList} from '@/api/home.js'
 import { ArrowRightOutlined } from '@ant-design/icons-vue';
-
+const router = useRouter()
 // 组件跳转
-const emit = defineEmits('taps')
 function toRouter(item) {
-  emit('taps',item)
+  router.push(`/news-detail/${item.id}`)
 }
 const query = ref({
   pageNum:1,

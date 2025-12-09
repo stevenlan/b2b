@@ -11,7 +11,23 @@
       </div>
       <category @taps="toRouter"/>
       <arrivals @taps="toRouter"/>
-      <img class="bigLogo" src="/src/assets/images/common/bigLogo.png"/>
+<!--      <img class="bigLogo" src="/src/assets/images/common/bigLogo.png"/>-->
+      <div class="comp-box" v-for="it in homeList" :key="it.name">
+        <!-- 视频 -->
+        <div class="c-video-box" v-if="it.name==='videos'">
+          <div class="c-video" v-for="child in it.config" :key="child.id">
+            <div class="group-head">
+<!--              <p>{{child.title}}</p>-->
+<!--              <p>{{child.introduction}}</p>-->
+              <c-video :src="child.resourceUrl"/>
+<!--              <p @click="toRouter(child)"><span>{{$t('layout.viewMore')}}</span></p>-->
+              <a-button class="view-detail-btn" @click="toRouter(child)">
+                {{ $t('layout.viewMore') }} <ArrowRightOutlined />
+              </a-button>
+            </div>
+          </div>
+        </div>
+      </div>
       <sellers @taps="toRouter"/>
       <brands @taps="toRouter"/>
       <psay @taps="toRouter"/>
@@ -23,43 +39,6 @@
           <a-input :placeholder="$t('home.newsletterEmailPlaceholder')" />
           <a-button>{{$t('home.newsletterSubscribe')}}</a-button>
         </div>
-      </div>
-
-      <div class="comp-box" v-for="it in homeList" :key="it.name">
-        <!-- 商品分组 -->
-<!--        <div class="com-group-box" v-if="it.name==='productGroupInfo'">-->
-<!--          <div class="com-group" v-for="child in it.config" :key="child.id">-->
-<!--            <div class="group-head">-->
-<!--              <p>{{child.name}}</p>-->
-<!--              <p>{{child.remark}}</p>-->
-<!--              <p><span @click="toRouter(child)">{{$t('layout.viewMore')}}</span></p>-->
-<!--            </div>-->
-<!--            <div class="group-list">-->
-<!--              <a-flex :gap="24">-->
-<!--                <div class="l-item" v-for="pro in child.productDetail" :key="pro.productId" @click="toRouter(pro)">-->
-<!--                  <img :src="formatImg(pro.image)" alt=""/>-->
-<!--                  <p class="c-name text-overflow">{{pro.productName}}</p>-->
-<!--                  <p class="sub-name text-overflow">{{pro.introduce}}</p>-->
-<!--                  <p class="price">-->
-<!--                    <span>{{currency}}{{formatPrice(pro.minPrice)}}</span>-->
-<!--                    <span>{{currency}}{{formatPrice(pro.maxPrice)}}</span>-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--              </a-flex>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-        <!-- 视频 -->
-<!--        <div class="c-video-box" v-if="it.name==='videos'">-->
-<!--          <div class="c-video" v-for="child in it.config" :key="child.id">-->
-<!--            <div class="group-head">-->
-<!--              <p>{{child.title}}</p>-->
-<!--              <p>{{child.introduction}}</p>-->
-<!--              <p @click="toRouter(child)"><span>{{$t('layout.viewMore')}}</span></p>-->
-<!--            </div>-->
-<!--            <c-video :src="child.resourceUrl"/>-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
@@ -419,6 +398,8 @@ getHomeSetting()
   }
   .group-head {
     margin-bottom: 32px;
+    background-color: #000;
+    padding: 20px;
     p {
       font-size: 16px;
       text-align: center;
@@ -516,5 +497,18 @@ getHomeSetting()
   img:hover {
     transform: scale(1.01); /* 放大10% */
   }
+}
+.view-detail-btn {
+  background-color: #FFF;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 15px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  cursor: pointer;
 }
 </style>

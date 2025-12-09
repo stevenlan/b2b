@@ -28,21 +28,13 @@
 <script setup>
 import { ref } from 'vue';
 import shareBrands from '@/components/shareBrands/index.vue'
-import { TwitterOutlined, FacebookFilled, InstagramFilled } from '@ant-design/icons-vue';
-const XIcon = TwitterOutlined; // Placeholder
-
-const socialIcons = ref([
-  { name: 'X', component: XIcon, link: '#' },
-  { name: 'Facebook', component: FacebookFilled, link: '#' },
-  { name: 'Twitter', component: TwitterOutlined, link: '#' }, // Assuming the third icon is Twitter
-  { name: 'Instagram', component: InstagramFilled, link: '#' },
-]);
 const customerSupportLinks = ref(['About Us', 'Contact Us', 'Download', 'Verify Product']);
 </script>
 
 <style lang="scss" scoped>
 .c-footer {
   padding: 0px 0 30px;
+  margin-top: 80px;
   .section-title{
     width: 66%;
     margin: 0 auto 25px;
