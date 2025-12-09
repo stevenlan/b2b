@@ -2,10 +2,10 @@
   <div class="p-home">
     <div class="main-con w-width">
       <div v-if="bannerList" class="banner">
-        <img :src="bannerList[0].imageUrl" @click="toRouter(bannerList[0])" style="width: 68%"/>
+        <img :src="bannerList[0].imageUrl" @click="toRouter(bannerList[0])" style="width: 920px;height: 430px;"/>
         <div class="column2">
           <template  v-for="(item,index) in bannerList" :key="index">
-            <img v-if="index > 0" :src="item.imageUrl" @click="toRouter(item)" style="height: 48%;width: 100%"/>
+            <img v-if="index > 0" :src="item.imageUrl" @click="toRouter(item)" style="height: 205px;width: 405px;"/>
           </template>
         </div>
       </div>

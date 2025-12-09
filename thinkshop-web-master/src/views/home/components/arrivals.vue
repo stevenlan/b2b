@@ -9,7 +9,7 @@
       <a-flex :gap="40" wrap="wrap" style="padding: 0px 90px;">
         <div class="product-card" v-for="(item, index) in list" :key="index">
           <div class="product-image-container">
-            <div style="width: 100%">
+            <div>
               <img :src="item.image" :alt="item.productName" />
             </div>
             <div class="sale-badge">{{$t('home.sale')}} {{currency}}{{item.sales}}</div>
@@ -97,8 +97,11 @@ getList()
       position: relative;
       border-radius: 8px;
       display: flex;
+      display: flex;
+      justify-content: center;
       img {
-        max-height: 220px;
+        width:200px;
+        height:185px;
       }
       .sale-badge {
         position: absolute;

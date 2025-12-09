@@ -108,6 +108,7 @@ getCategoryList()
       .category-image {
         position: absolute;
         width: 160px;
+        height: 200px;
         top: 0;
         left: 50%;
         transform: translate(-50%, -15%);

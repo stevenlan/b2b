@@ -10,7 +10,7 @@
       <a-flex :gap="40" wrap="wrap" style="padding: 0 90px">
         <div class="bs-product-card" v-for="(item, index) in list" :key="index" @click="toRouter(item)">
           <div class="bs-product-image-container">
-            <img :src="item.image" :alt="item.productName" />
+            <img :src="item.image" :alt="item.productName" style="width:200px;height:185px"/>
           <div class="new-badge">{{$t('home.new')}}</div>
           </div>
           <p class="bs-product-name">{{ item.productName }}</p>

@@ -6,7 +6,7 @@
         <a-flex justify="space-around">
           <div class="brand-item" v-for="(item, index) in list" :key="index">
             <div class="brand-image-wrapper">
-              <img :src="item.brandImage" :alt="item.name" />
+              <img :src="item.brandImage" :alt="item.name" style="width: 60px;height: 100px"/>
             </div>
             <p>{{ item.name }}</p>
           </div>
