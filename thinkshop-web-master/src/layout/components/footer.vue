@@ -59,7 +59,7 @@ const customerSupportLinks = ref([{
 
   .main-con {
     margin: 0 auto;
-    width: 66%;
+    width: 76%;
     padding: 30px 0;
     border-top: 1px solid;
     border-bottom: 1px solid;
