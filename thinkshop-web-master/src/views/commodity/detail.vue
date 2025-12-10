@@ -42,18 +42,23 @@
             <p class="price">{{currency}}{{formatPrice(sku.price) || formatPrice(detail.minPrice)}}</p>
             <div class="sku" v-if="detail.productAttr&&detail.productAttr.length">
               <div v-for="it in detail.productAttr" :key="it.attrId" class="mb10">
-                <p class="sku-name">
+                <p v-if="detail.skuType == 1 && detail.productAttr.length == 1"  class="sku-name">
+                  {{$t('commodity.skuSingle')}}：
+                  <span>{{it.selectAttr}}</span>
+                </p>
+                <p v-else class="sku-name">
                   {{it.attrName}}：
                   <span>{{it.selectAttr}}</span>
                 </p>
                 <a-flex :gap="10" wrap="wrap">
-                  <p
+                  <p 
                     v-for="(val, i) in it.attrValueArr"
                     :key="i"
                     :class="['sku-item','cursor-p', 'mb10', val===it.selectAttr?'active':'']"
                     @click="selectSku(it, val)"
                   >
-                    {{val}}
+                    <span v-if="detail.skuType == 1 && detail.productAttr.length == 1">{{$t('commodity.skuDeft')}}</span>
+                    <span v-else>{{val}}</span>
                   </p>
                 </a-flex>
               </div>

@@ -144,6 +144,8 @@ export default {
     "myGoods": "My Products",
     "price": "Price",
     "sku": "Specifications",
+    "skuSingle": "Single Specifications",
+    "skuDeft": "Default",
     "selectAll": "Select All",
     "totalNum": "Total",
     "toBuy": "Check Out Now",

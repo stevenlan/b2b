@@ -2,10 +2,10 @@
   <div class="p-home">
     <div class="main-con w-width">
       <div v-if="bannerList" class="banner">
-        <img :src="bannerList[0].imageUrl" @click="toRouter(bannerList[0])" style="width: 920px;height: 430px;"/>
+        <img :src="bannerList[0].imageUrl" @click="toRouter(bannerList[0])" style="width: 70%;"/>
         <div class="column2">
           <template  v-for="(item,index) in bannerList" :key="index">
-            <img v-if="index > 0" :src="item.imageUrl" @click="toRouter(item)" style="height: 205px;width: 405px;"/>
+            <img v-if="index > 0" :src="item.imageUrl" @click="toRouter(item)" style="height: 49%; width: 100%;"/>
           </template>
         </div>
       </div>
@@ -119,6 +119,7 @@ getHomeSetting()
   padding: 0 10%;
   .main-con {
     margin: 30px auto 100px;
+    min-width: 1100px;
     .comp-box{
       width: 100%;
       margin: 30px auto;
@@ -482,7 +483,8 @@ getHomeSetting()
 .banner{
   display: flex;
   gap: 15px; /* 设置网格之间的间隔 */
-  height: 430px;
+  //height: 430px;
+  min-width:1000px;
   .column2{
     display: flex;
     flex-direction: column;

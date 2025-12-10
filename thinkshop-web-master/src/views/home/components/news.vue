@@ -50,8 +50,8 @@ getList()
     width: calc(33.333% - 20px);
     text-align: left;
     .review-image {
-      width: 430px;
-      height: 430px;
+      width: 100%;
+      //height: 430px;
       border-radius: 8px;
       margin-bottom: 16px;
     }

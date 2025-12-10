@@ -143,6 +143,8 @@ export default {
     myGoods: '我的商品',
     price: '价格',
     sku: '规格',
+    skuSingle: "单规格",
+    skuDeft: "默认",
     selectAll:  '全选',
     totalNum: '合计',
     toBuy: '立即结算',

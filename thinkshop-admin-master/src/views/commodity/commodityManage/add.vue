@@ -66,15 +66,19 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="商品品牌" prop="brandId">
-                <el-tree-select
+                <el-select
                   v-model="formData.brandId"
-                  :data="brandList"
-                  check-strictly
-                  :props="brandProps"
-                  :render-after-expand="false"
-                  placeholder="请选择商品类目"
+                  :multiple="false"
                   style="width: 100%"
-                />
+                  placeholder="请选择商品品牌"
+                >
+                  <el-option
+                    v-for="it in brandList"
+                    :label="it.name"
+                    :value="it.id"
+                    :key="it.id"
+                  />
+                </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -346,7 +350,6 @@ const treeProps = ref({
   value: 'categoryId'
 })
 const brandProps = ref({
-  children: 'child',
   label: 'name',
   value: 'id'
 })
@@ -530,7 +533,7 @@ async function init() {
   const {id=''} = route.query
   try {
     const {rows=[]} = await queryCategory()
-    const {brandRows=[]} = await queryBrand()
+    const {rows:brandRows=[]} = await queryBrand()
     const {rows:groupRows=[]} = await queryGroup({pageNum: 1, pageSize: 999})
     categoryList.value = rows
     brandList.value = brandRows
