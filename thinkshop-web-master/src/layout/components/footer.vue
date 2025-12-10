@@ -9,7 +9,7 @@
         <div class="footer-col links bold">
           <h4>CUSTOMER SUPPORT</h4>
           <ul>
-            <li v-for="link in customerSupportLinks" :key="link"><a>{{ link }}</a></li>
+            <li v-for="item in customerSupportLinks" :key="item.title"><a>{{ item.title }}</a></li>
           </ul>
         </div>
         <div class="footer-col contact-info">
@@ -28,7 +28,22 @@
 <script setup>
 import { ref } from 'vue';
 import shareBrands from '@/components/shareBrands/index.vue'
-const customerSupportLinks = ref(['About Us', 'Contact Us', 'Download', 'Verify Product']);
+const customerSupportLinks = ref([{
+    title:'About Us',
+    url:''
+  },
+  {
+    title:'Contact Us',
+    url:''
+  },
+  {
+    title:'Download',
+    url:''
+  },
+  {
+    title:'Verify Product',
+    url:''
+  }]);
 </script>
 
 <style lang="scss" scoped>

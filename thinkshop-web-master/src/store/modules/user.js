@@ -10,7 +10,7 @@ const useUserStore = defineStore(
     state: () => ({
       token: getToken(),
       userInfo: {},
-      showAgeVerity: false,
+      showAgeVerity: true,
       resolvePromise: null, //
     }),
     actions: {

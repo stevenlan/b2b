@@ -46,6 +46,12 @@ export const routes = [
         meta: {title: '商品详情'}
       },
       {
+        path: '/product-Verify',
+        component: () => import('@/views/verityProducts/index'),
+        name: 'ProductVerify',
+        meta: {title: 'Verify Product'}
+      },
+      {
         path: '/news-detail/:newsId(\\d+)',
         component: () => import('@/views/news/detail'),
         name: 'NewsDetail',

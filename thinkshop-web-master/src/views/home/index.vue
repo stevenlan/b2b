@@ -133,6 +133,7 @@ getHomeSetting()
       justify-content: space-between;
       align-items: center;
       margin-bottom: 32px;
+      border-radius: 15px;
       p:first-child {
         font-size: 36px;
         font-weight: bold;
