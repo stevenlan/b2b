@@ -345,6 +345,7 @@ onMounted(() => {
   .p-center {
     .main-con {
       margin: 45px auto;
+      min-width: 1100px;
       .order-detail {
         display: flex;
         position: relative;

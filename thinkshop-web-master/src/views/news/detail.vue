@@ -41,6 +41,7 @@ getDetail()
 <style scoped lang="scss">
 .main-con {
   margin: 0 auto;
+  min-width: 1100px;
   .info-box {
     padding: 32px 0;
     border-bottom: 1px #E5E5E5 solid;

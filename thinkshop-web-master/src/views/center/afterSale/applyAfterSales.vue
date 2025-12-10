@@ -362,7 +362,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .p-center {
   .main-con {
-    width: 1000px;
+    min-width: 1100px;
     margin: 45px auto;
 
     .order-detail {

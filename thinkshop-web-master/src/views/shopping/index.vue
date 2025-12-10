@@ -219,6 +219,7 @@ init()
 .shopping {
   .main-con {
     margin: 32px auto;
+    min-width: 1100px;
     padding-bottom: 30px;
     .l-p {
       flex: 1;

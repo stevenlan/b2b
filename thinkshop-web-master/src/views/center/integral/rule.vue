@@ -22,6 +22,7 @@ init()
 <style scoped lang="scss">
 .main-con {
   margin: 32px auto 100px;
+  min-width: 1100px;
 }
 .integral-title {
   font-size: 20px;

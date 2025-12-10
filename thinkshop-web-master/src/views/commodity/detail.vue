@@ -352,6 +352,7 @@ getDetail()
 <style scoped lang="scss">
 .main-con {
   margin: 0 auto;
+  min-width: 1100px;
   .mb20 {
     margin-bottom: 20px;
   }
