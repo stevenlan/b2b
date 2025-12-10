@@ -101,7 +101,7 @@ init()
   background: #ffffff;
   .c-warin{
     background-color: #FFBD44;
-    width: 100vw;
+    min-width: 1100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -114,6 +114,7 @@ init()
   .main-con {
     margin: 10px auto;
     height: 79px;
+    min-width: 1100px;
     .logo {
       width: 86px;
       height: 79px;

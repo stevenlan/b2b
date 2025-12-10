@@ -1,6 +1,6 @@
 <template>
   <div class="sticky-header-wrapper" @mouseleave="handleMouseleave">
-    <div class="header-container w-width" style="width: 66%">
+    <div class="header-container w-width" style="width: 76%">
       <!-- Left Section: Categories Dropdown -->
       <div class="left-section">
         <a-dropdown :trigger="['click']">
