@@ -80,7 +80,7 @@ function seleckMenu(item) {
 .p-center {
   .main-con {
     margin:32px auto;
-    min-width: 1100px;
+    // min-width: 1100px;
     .menu {
       width: 180px;
       ul {

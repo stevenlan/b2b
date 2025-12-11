@@ -184,14 +184,14 @@ const emit = defineEmits(['rest'])
       justify-content: space-between;
       flex: 1;
       .order-date {
-        width: 520px;
+        width: 480px;
       }
       .order-id {
         flex: 1;
       }
     }
     .order-del {
-      width: 275px;
+      width: 165px;
       text-align: right;
       cursor: pointer;
       font-size: 12px;
@@ -219,7 +219,7 @@ const emit = defineEmits(['rest'])
         .product-status {
           color: #262626;
           font-weight: 400;
-          padding-right: 80px;
+          padding-right: 30px;
           .product-status-text {
             text-align: right;
           }
@@ -232,7 +232,7 @@ const emit = defineEmits(['rest'])
         }
         .product-img {
           display: flex;
-          width: 520px;
+          width: 480px;
           img {
             width: 98px;
             height: 110px;

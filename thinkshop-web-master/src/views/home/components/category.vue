@@ -4,7 +4,7 @@
     <div class="category-swiper-box" v-if="list&&list.length>0">
       <div class="group-head" style="margin-bottom: 25px">
         <p>{{ $t('layout.typeToCheck') }}</p>
-        <p><span @click="toRouter({ redirectUrl: '/product-list' })">{{ $t('layout.seeAllDeel') }}</span></p>
+        <p><span @click="toRouter({ redirectUrl: '/#/product-list' })">{{ $t('layout.seeAllDeel') }}</span></p>
       </div>
       <div class="swiper-container-with-nav">
         <swiper
@@ -20,7 +20,7 @@
               <img :src="item.pictureUrl" alt="" class="category-image"/>
               <div class="category-info">
                 <p class="category-name">{{ item.name }}</p>
-                <a-button class="view-detail-btn" @click="toRouter(item)">
+                <a-button class="view-detail-btn" @click="toRouter({ redirectUrl: '/#/product-list?categoryId='+item.categoryId })">
                   {{ $t('layout.viewDetail') }} <ArrowRightOutlined />
                 </a-button>
               </div>
@@ -44,9 +44,11 @@ import { ArrowRightOutlined, LeftOutlined, RightOutlined } from '@ant-design/ico
 
 
 // 组件跳转
+const router = useRouter()
 const emit = defineEmits('taps')
 function toRouter(item) {
   emit('taps',item)
+  //router.push(it.path)
 }
 
 
@@ -93,7 +95,7 @@ getCategoryList()
     .category-card {
       position: relative;
       border-radius: 20px;
-      height: 320px;
+      height: 290px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;

@@ -327,10 +327,8 @@ const defaultForm = {
 const form = reactive({ ...defaultForm })
 
 const accountTypeOptions = [
-  { label: 'Retailer', value: 0 },
-  { label: 'Distributor', value: 1 },
-  { label: 'Service Provider', value: 2 },
-  { label: 'Other', value: 3 },
+  { label: 'Person', value: 1 },
+  { label: 'Business', value: 2 },
 ]
 
 const hearAboutOptions = [

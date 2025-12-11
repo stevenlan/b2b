@@ -58,6 +58,18 @@ export const routes = [
         meta: {title: '新闻详情'}
       },
       {
+        path: '/aboutUs',
+        component: () => import('@/views/about/detail'),
+        name: 'AboutUs',
+        meta: {title: '关于我们'}
+      },
+      {
+        path: '/contactUs',
+        component: () => import('@/views/contact/detail'),
+        name: 'ContactUs',
+        meta: {title: '联系我们'}
+      },
+      {
         path: '/shopping',
         component: () => import('@/views/shopping/index'),
         name: 'Shopping',

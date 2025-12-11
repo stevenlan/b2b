@@ -4,10 +4,10 @@
     <div class="new-arrivals-box" v-if="list&&list.length>0">
       <div class="group-head">
         <p>{{$t('home.newArrivalsTitle')}}</p>
-        <p><span @click="toRouter({ redirectUrl: '/product-list' })">{{ $t('layout.seeAllDeel') }}</span></p>
+        <p><span @click="toRouter({ redirectUrl: '/#/product-list' })">{{ $t('layout.seeAllDeel') }}</span></p>
       </div>
       <a-flex :gap="40" wrap="wrap" style="padding: 0px 90px;">
-        <div class="product-card" v-for="(item, index) in list" :key="index">
+        <div class="product-card" v-for="(item, index) in list" :key="index" @click="toRouter(item)">
           <div class="product-image-container">
             <div>
               <img :src="item.image" :alt="item.productName" />

@@ -4,7 +4,7 @@
       <h2 class="section-title">{{$t('home.featuredBrandsTitle')}}</h2>
       <div class="brands-container">
         <a-flex justify="space-around">
-          <div class="brand-item" v-for="(item, index) in list" :key="index">
+          <div class="brand-item" v-for="(item, index) in list" :key="index" @click="toRouter({ redirectUrl: '/#/product-list?brandId='+item.id })">
             <div class="brand-image-wrapper">
               <img :src="item.brandImage" :alt="item.name" style="width: 60px;height: 100px"/>
             </div>
