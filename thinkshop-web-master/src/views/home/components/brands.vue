@@ -20,19 +20,19 @@
 import {brandsList} from '@/api/home.js'
 
 // 组件跳转
-const emit = defineEmits('taps')
+const emit = defineEmits(['taps'])
 function toRouter(item) {
   emit('taps',item)
 }
 
-const list = ref(null)
+const list = ref([])
 const query = ref({
   pageNum:1,
   pageSize:5
 })
 function getList(){
   brandsList(query.value).then(res=>{
-    list.value = res.rows
+    list.value = res.rows||[]
   })
 }
 getList()

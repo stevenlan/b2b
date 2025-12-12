@@ -16,7 +16,7 @@
               <p class="testimonial-text">{{ item.comment }}</p>
               <div class="user-info">
                 <div class="user-avatar">
-                  <img :src="item.imageUrlSet[0]" :alt="item.commentUser" />
+<!--                  <img :src="item.imageUrlSet[0]" :alt="item.commentUser" />-->
                 </div>
                 <p class="user-name">{{ item.commentUser }}</p>
               </div>

@@ -32,12 +32,12 @@ import {categoryList} from "@/api/product.js";
 const {proxy} = getCurrentInstance()
 
 // 组件跳转
-const emit = defineEmits('taps')
+const emit = defineEmits(['taps'])
 function toRouter(item) {
   emit('taps',item)
 }
 
-const bestSellerTabs = ref(null);
+const bestSellerTabs = ref([]);
 const tabSelect = ref(-1);
 
 function queryCategory() {

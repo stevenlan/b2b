@@ -46,12 +46,8 @@
 
 <script setup>
 import {getHomeDesign} from '@/api/login'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/css'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { ArrowRightOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons-vue';
-import { formatPrice } from "@/utils/index.js";
-import 'swiper/swiper-bundle.css'
+import { ArrowRightOutlined } from '@ant-design/icons-vue';
 import CVideo from '@/components/CVideo.vue'
 import useSettingStore from '@/store/modules/setting'
 
@@ -62,11 +58,7 @@ import Brands from "@/views/home/components/brands.vue";
 import Psay from "@/views/home/components/psay.vue";
 import News from "@/views/home/components/news.vue";
 
-
-
-
 const router = useRouter()
-
 
 // 货币单位
 const currency = ref(useSettingStore().global.currencySymbol || '')
@@ -109,7 +101,6 @@ function getHomeSetting() {
     }, [])
   })
 }
-
 
 getHomeSetting()
 </script>

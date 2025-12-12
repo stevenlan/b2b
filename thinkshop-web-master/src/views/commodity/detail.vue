@@ -51,7 +51,7 @@
                   <span>{{it.selectAttr}}</span>
                 </p>
                 <a-flex :gap="10" wrap="wrap">
-                  <p 
+                  <p
                     v-for="(val, i) in it.attrValueArr"
                     :key="i"
                     :class="['sku-item','cursor-p', 'mb10', val===it.selectAttr?'active':'']"
@@ -213,11 +213,6 @@ const commentOb = ref({rows: [], total: 0})
 watch(() => pageIndex.value, (val) => {
   proImg.value = detail.value.images[val]
 })
-
-// 初始化商品主图swiper
-function onSwiper(swiper) {
-  useSwiper.value = swiper
-}
 function onSlideChange(v) {
 	pageIndex.value = useSwiper.value.activeIndex
 }
@@ -340,6 +335,8 @@ function buyProduct(isNew) {
     }
   })
 }
+
+
 // 好物详情
 function toRouter(it) {
   router.push(`/product-detail/${it.productId}`)

@@ -40,7 +40,7 @@ import useSettingStore from '@/store/modules/setting'
 const currency = ref(useSettingStore().global.currencySymbol || '')
 
 // 组件跳转
-const emit = defineEmits('taps')
+const emit = defineEmits(['taps'])
 function toRouter(item) {
   emit('taps',item)
 }
@@ -50,7 +50,7 @@ const modules = ref([Autoplay, Pagination, Navigation])
 
 const colorList = ref(['red','blue','#000'])
 
-const list = ref(null)
+const list = ref([])
 /*1是新品的排序 0是推荐的排序 3是销量降序*/
 const query = ref({
   sort:1,

@@ -28,10 +28,10 @@ const query = ref({
   pageNum:1,
   pageSize:3
 })
-const list = ref(null)
+const list = ref([])
 function getList(){
   newsList(query.value).then(res=>{
-    list.value = res.rows
+    list.value = res.rows||[]
   })
 }
 getList()
